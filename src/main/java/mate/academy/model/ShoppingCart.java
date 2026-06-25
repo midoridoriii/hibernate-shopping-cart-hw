@@ -1,36 +1,49 @@
 package mate.academy.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.util.List;
 
+@Entity
+@Table(name = "shopping_carts")
 public class ShoppingCart {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany
     private List<Ticket> tickets;
+
+    @OneToOne(fetch = FetchType.LAZY)
     private User user;
 
     public Long getId() {
         return id;
     }
 
-    public ShoppingCart setId(Long id) {
+    public void setId(Long id) {
         this.id = id;
-        return this;
     }
 
     public List<Ticket> getTickets() {
         return tickets;
     }
 
-    public ShoppingCart setTickets(List<Ticket> tickets) {
+    public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
-        return this;
     }
 
     public User getUser() {
         return user;
     }
 
-    public ShoppingCart setUser(User user) {
+    public void setUser(User user) {
         this.user = user;
-        return this;
     }
 }
